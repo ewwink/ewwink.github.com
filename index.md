@@ -2,8 +2,6 @@
 layout: page
 title: ewwink on github
 tagline: Supporting tagline
-category : lessons
-tags : [intro, beginner, jekyll, tutorial]
 ---
 {% include JB/setup %}
 
