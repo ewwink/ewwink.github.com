@@ -5,8 +5,7 @@ tagline: Supporting tagline
 ---
 {% include JB/setup %}
 
-latest posts list
-==
+##latest posts list
 
 <ul class="posts">
   {% for post in site.posts %}
