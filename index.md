@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Hello World!
+title: ewwink on github
 tagline: Supporting tagline
 ---
 {% include JB/setup %}
