@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Debugger.setBreakpointByUrl</title>
+</head>
+<body>
+  <input type="button" value="Debug Me!" id="testDebug">
+  <p>status: <span id="debugResult">Debug Me!</span></p>
+  <p>status: <span id="noDebug">No Debug</span></p>
+<hr>
+<pre>
+function onDebuggerEnabled(debuggeeId) {
+  chrome.debugger.sendCommand(debuggeeId, "Debugger.setBreakpointByUrl", {
+        lineNumber: 11,
+        url: 'https://ewwink.github.io/demo/script.js'
+  });
+}
+</pre>
+</body>
+</html>
