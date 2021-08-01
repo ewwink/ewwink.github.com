@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Kalkulator Laba Rugi Seller</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <style>
+        body{font-weight:700;margin:0;padding:0}p{font-size:16px}label{display:inline-block;width:150px}input{font-size:18px}.red{color:red}.red *{color:red}#wrap{width:500px;margin:0 auto;border:1px solid #eee;padding:5px 10px}
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <h1>Kalkulator Laba Rugi Seller</h1>
+        <p><label>Biaya Produksi (Rp.)</label>: <input type="number" id="hpp" /></p>
+        <p><label>Harga Jual (Rp.)</label>: <input type="number" id="jual" /></p>
+        <p><label>Biaya Admin</label>: <input type="number" id="admin" value="6" />%</p>
+        <p class="red"><label>Ongkir Lazada <input type="checkbox" id="cboxOngkir"></label>: <input type="number"
+                id="ongkirLazada" disabled /></p>
+        <hr />
+        <p class="red"><label>Biaya Admin (Rp.)</label>: <input type="number" id="biayaAdmin" /></p>
+        <p><label>Omset Bersih (Rp.)</label>: <input type="number" id="omset" />%</p>
+        <p><label>laba (Rp.)</label>: <input type="number" id="labaRp" /></p>
+        <p id="persenLaba"><label>laba persen</label>: <input type="number" id="labaPersen" /></p>
+        <br>
+        <p>Biaya Admin Shopee</p>
+        <ul>
+            <li>Non Star Seller: 1.6%</li>
+            <li>Star Seller: 2%</li>
+            <li>Gratis Ongkir: 3.6%</li>
+            <li>CashBack Xtra: 1.4%</li>
+        </ul>
+    </div>
+    <script>
+        function updateLaba() {
+            var biayaAdminRp = (jual.value * admin.value) / 100;
+            var omzetBersih = jual.value - biayaAdminRp;
+            omset.value = omzetBersih;
+            biayaAdmin.value = biayaAdminRp;
+            var labaBersih = omzetBersih - hpp.value;
+            if (!ongkirLazada.disabled) labaBersih = labaBersih - ongkirLazada.value;
+            labaRp.value = labaBersih;
+            labaPersen.value = parseInt((labaBersih / hpp.value) * 100);
+            persenLaba.className = labaPersen.value > 9 ? 'good' : 'red';
+        }
+
+        [hpp, jual, admin, ongkirLazada].forEach(function (i) {
+            i.addEventListener('input', function () {
+                updateLaba();
+            });
+        });
+
+        cboxOngkir.onchange = function () {
+            updateLaba();
+        }
+        cboxOngkir.onclick = function () {
+            ongkirLazada.disabled = !ongkirLazada.disabled;
+        };
+    </script>
+</body>
+
+</html>
